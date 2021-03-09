@@ -18,7 +18,6 @@ var block32;
 
 var Sling;
 
-
 function setup(){
     var canvas = createCanvas(1200,400);
     engine = Engine.create();
@@ -75,7 +74,7 @@ function setup(){
     polygon = new Polygon(50,200,20);
 
     // Slingshot
-    Sling = new Slingshot(polygon.body,{x:50,y:200});
+    Sling = new SlingShot(polygon.body,{x:200,y:200});
 
 }
 
@@ -128,5 +127,12 @@ function mouseDragged(){
 
 
 function mouseReleased(){
-    sling.fly();
+    Sling.fly();
+}
+
+function keyPressed(){
+	if (keyCode === 32) {
+		Matter.Body.setPosition(polygon.body, {x:200,y:200})
+		Sling.attach(polygon.body);
+	}
 }
