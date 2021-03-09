@@ -1,7 +1,7 @@
 class Block {
   constructor(x, y, width, height) {
     var options = {
-        'restitution':0.8,
+        'restitution':0.4,
         'friction':1.0,
         'density':1.0
     }
@@ -18,9 +18,9 @@ class Block {
     translate(pos.x, pos.y);
     rotate(angle);
     rectMode(CENTER);
-    strokeWeight(4);
-    stroke('lightgreen');
-    fill(255);
+    strokeWeight(2.5);
+    stroke('Black');
+    fill('lightgreen');
     rect(0, 0, this.width, this.height);
     pop();
   }

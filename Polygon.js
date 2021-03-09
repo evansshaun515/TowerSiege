@@ -5,22 +5,24 @@ class Polygon {
           'friction':1.0,
           'density':1.0
       }
-      this.body = Matter.Bodies.circle(x, y, 75, options);
-      this.radius = 75;
+      this.body = Bodies.circle(x, y, 20, options);
+      this.radius = 20;
       this.image = loadImage('polygon.png');
       
       World.add(world, this.body);
     }
     display(){
       var pos =this.body.position;
-      var angle = this.body.angle;
+      //var angle = this.body.angle;
       push();
       translate(pos.x, pos.y);
-      rotate(angle);
+      rotate(this.body.angle);
+      //fill(255,0,255);
       imageMode(CENTER);
-      strokeWeight(4);
-      stroke('black');
-      fill('blue');
+      ellipseMode(CENTER);
+      // strokeWeight(4);
+      // stroke('black');
+      //fill('blue');
       image(this.image, 0, 0, this.radius);
       pop();
     }
