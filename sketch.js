@@ -18,6 +18,12 @@ var block32;
 
 var Sling;
 
+var ball;
+
+function preload(){
+  polygon=loadImage("polygon.png");
+}
+
 function setup(){
     var canvas = createCanvas(1200,400);
     engine = Engine.create();
@@ -71,11 +77,15 @@ function setup(){
 
 
     // Polygon
-    polygon = new Polygon(50,200,20);
+   // polygon = new Polygon(50,200,20);
+
+   //ball holder with slings
+  ball = Bodies.circle(50,200,20);
+  World.add(world,ball);
 
     // Slingshot
-    Sling = new SlingShot(polygon.body,{x:200,y:200});
-
+    //Sling = new SlingShot(polygon.body,{x:200,y:200});
+    Sling = new SlingShot(this.ball,{x:100,y:200});
 }
 
 function draw(){
@@ -117,12 +127,17 @@ function draw(){
     block30.display();
     block31.display();
     block32.display();
-    polygon.display();
+   // polygon.display();
+    
+
+    imageMode(CENTER)
+    image(polygon,ball.position.x,ball.position.y,40,40);
+
     Sling.display();
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(polygon.body, {x: mouseX , y: mouseY});
+    Matter.Body.setPosition(this.ball,{x: mouseX , y: mouseY});
 }
 
 
@@ -131,8 +146,8 @@ function mouseReleased(){
 }
 
 function keyPressed(){
-	if (keyCode === 32) {
-		Matter.Body.setPosition(polygon.body, {x:200,y:200})
-		Sling.attach(polygon.body);
-	}
+    if (keyCode === 32) {
+        Matter.Body.setPosition(this.ball,{x:200,y:200})
+        Sling.attach(ball.body);
+    }
 }
